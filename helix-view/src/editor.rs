@@ -435,11 +435,7 @@ impl Editor {
                 doc.set_language_server(Some(language_server));
             }
 
-            let id = DocumentId(self.next_document_id);
-            self.next_document_id += 1;
-            doc.id = id;
-            self.documents.insert(id, doc);
-            id
+            self.new_document(doc)
         };
 
         self.switch(id, action);

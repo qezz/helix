@@ -88,7 +88,7 @@ pub fn config_dir() -> std::path::PathBuf {
     // TODO: allow env var override
     let strategy = choose_base_strategy().expect("Unable to find the config directory!");
     let mut path = strategy.config_dir();
-    path.push("helix");
+    path.push("helix-emacs");
     path
 }
 
@@ -96,7 +96,7 @@ pub fn cache_dir() -> std::path::PathBuf {
     // TODO: allow env var override
     let strategy = choose_base_strategy().expect("Unable to find the config directory!");
     let mut path = strategy.cache_dir();
-    path.push("helix");
+    path.push("helix-emacs");
     path
 }
 

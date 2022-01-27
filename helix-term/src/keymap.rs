@@ -744,8 +744,9 @@ impl Default for Keymaps {
             "C-d" => delete_char_forward,
             "ret" => insert_newline,
             "tab" => insert_tab,
-            "C-w" => delete_word_backward,
-            "A-d" => delete_word_forward,
+                                // "C-w" => delete_word_backward,
+                                "C-w" => delete_selection,
+            "M-d" => delete_word_forward,
 
             "left" => move_char_left,
             "C-b" => move_char_left,
@@ -771,6 +772,8 @@ impl Default for Keymaps {
 
             "C-x" => completion,
             "C-r" => insert_register,
+
+                                "C-s" => search,
         });
         Keymaps(hashmap!(
             Mode::Normal => Keymap::new(normal),

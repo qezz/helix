@@ -60,7 +60,7 @@ impl fmt::Display for KeyEvent {
                 ""
             },
             if self.modifiers.contains(KeyModifiers::ALT) {
-                "A-"
+                "M-"
             } else {
                 ""
             },
@@ -194,6 +194,7 @@ impl std::str::FromStr for KeyEvent {
             let flag = match token {
                 "S" => KeyModifiers::SHIFT,
                 "A" => KeyModifiers::ALT,
+                "M" => KeyModifiers::ALT,
                 "C" => KeyModifiers::CONTROL,
                 _ => return Err(anyhow!("Invalid key modifier '{}-'", token)),
             };
@@ -289,6 +290,14 @@ mod test {
 
         assert_eq!(
             str::parse::<KeyEvent>("C-A-S-F12").unwrap(),
+            KeyEvent {
+                code: KeyCode::F(12),
+                modifiers: KeyModifiers::SHIFT | KeyModifiers::CONTROL | KeyModifiers::ALT
+            }
+        );
+
+        assert_eq!(
+            str::parse::<KeyEvent>("C-M-S-F12").unwrap(),
             KeyEvent {
                 code: KeyCode::F(12),
                 modifiers: KeyModifiers::SHIFT | KeyModifiers::CONTROL | KeyModifiers::ALT
